@@ -1,0 +1,153 @@
+<%- include ('../layouts/adminHeader.ejs') %>
+
+    <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-secondary navbar-dark">
+            <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary">Men In Town</h3>
+            </a>
+            <div class="d-flex align-items-center ms-4 mb-4">
+                <div class="position-relative">
+                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                </div>
+                <div class="ms-3">
+                    <span>Admin</span>
+                </div>
+            </div>
+            <div class="navbar-nav w-100">
+                <a href="/admin/home" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="/admin/user" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
+                <a href="/admin/category" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Categories</a>
+                <a href="/admin/product" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Products</a>
+                <a href="/admin/order" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Orders</a>
+                <a href="/admin/banner" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Banners</a>
+                <a href="/admin/loadCoupon" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a>
+
+                <!-- <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Administration</a>
+                <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a> -->
+
+            </div>
+        </nav>
+    </div>
+        
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <form class="d-none d-md-flex ms-4">
+                <input class="form-control bg-dark border-0" type="search" placeholder="Search" name="search">
+            </form>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa fa-bell me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Notification</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Profile updated</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">New user added</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Password changed</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all notifications</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">Admin</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+                <h2 class="text-center my-5 text-light">ALL PRODUCTS</h2>
+                <a href="/admin/add-product"><button  type="button" class="btn btn-primary mx-3">+ Add Product</button></a>
+                <table class="table text-center" >
+            <thead>
+              <tr>
+                <th scope="col">SL NO</th>
+                <th scope="col">NAME</th>
+                <th scope="col">STOCK</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">RATING</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">ACTION</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+                <% if(products.length> 0){ %>
+                    <% for(let i=1;i <=products.length; i++){ %>  
+                        <% if(products.length>=0){ %>
+                <tr>
+                    <th><%= i %> </th>
+                    <td>
+                        <%= products[i-1].name  %> 
+                    </td>
+                    <td>
+                        <%= products[i-1].stock  %> 
+                    </td>
+                    <td>
+                        <%= products[i-1].category %>
+                    </td>
+
+                    <td>
+                        <%= products[i-1].price  %> 
+                    </td>
+                    <td>
+                        <%= products[i-1].rating  %> 
+                    </td>
+                   
+                    <td>
+                        <% if(products[i-1].image) { %>
+                            <img src="/uploads/<%= products[i-1].image[0] %>"
+                                width="100vw" height="100vh">
+                            <% }else{ %>
+                                Image Not Found
+                                <% } %>
+                    </td>
+                    <td>
+                                    <a class="text-success" href="/admin/edit-product?id=<%= products[i-1]._id %>"><i
+                                            style="color: green;"
+                                            class="m-r-5 mdi mdi-border-color"></i>Edit</a><br>
+                                   
+                                    <a  onclick="return confirm('do you want to delete?')"class="text-danger" href="/admin/delete-product?id=<%= products[i-1]._id %>"><i style="color: #ff0000;"
+                                            class="m-r-5 mdi mdi-border-color"></i>Delete</a><br>
+
+                                            
+                                    <a id="<%-products[i-1]._id %>" style="text-decoration: none; color: #ffff;"
+                                     href="/admin/show-product?id=<%-products[i-1]._id %>"><% if(products[i-1].isAvailable){ %>Unlist<%}else{%>list<%}%></a>
+                     </td>
+
+                </tr>
+                <% } %> 
+                <% } } else{ %>
+                    <tr>
+                        <td colspan="5">Products Not Found</td>
+                    </tr>
+                    <% } %>
+                
+            </tbody>
+          </table>
+
+        <%- include ('../layouts/adminFooter.ejs') %>
+

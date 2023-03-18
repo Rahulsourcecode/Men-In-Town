@@ -1,0 +1,253 @@
+<%- include ('../layouts/adminHeader.ejs') %>
+
+
+      <style>
+    table, th, td {
+  border: 1px solid rgba(57, 53, 53, 0.701);
+}
+      </style>
+
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">Men In Town</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/admin/home" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/admin/user" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
+                    <a href="/admin/category" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Categories</a>
+                    <a href="/admin/product" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Products</a>
+                    <a href="/admin/order" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Orders</a>
+                    <a href="/admin/banner" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Banners</a>
+                    <a href="/admin/loadCoupon" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a>
+    
+                    <!-- <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Administration</a>
+                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a> -->
+    
+                </div>
+            </nav>
+        </div>
+            
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control bg-dark border-0" type="search" placeholder="Search" name="search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notification</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">Admin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+                    <h2 class="text-center my-5 text-light">ORDER MANAGEMENT</h2>
+                    <input type="date" name="startdate" id="startdate" onchange="cli()" >
+                    <input type="date" name="enddate" id="enddate" onchange="cli()">
+                    <button type="button" id="pdf">Download</button>
+                    <table class="table text-center border bg-dark"id="ordersTable" >
+                <thead >
+                  <tr>
+                    <th scope="col">SL NO</th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">ACTION</th>
+    
+    
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                    <% if(orders.length> 0){ %>
+                        <% for(let i=1;i<=orders.length; i++){ %>  
+                    <tr>
+                        <th><%= i %> </th>
+                        <td>
+                            <%= orders[i-1]._id  %> 
+                        </td>
+                        <td>
+                            <%=orders[i-1].userId.name%>
+                        </td>
+                        <td>
+                            <%= orders[i-1].payment.amount%> 
+                        </td>
+                        <td>
+                            <%= orders[i-1].payment.method%> 
+                            
+                        </td>
+                        <td>  
+                            <%= orders[i-1].status%> 
+                        </td>
+                        <td>  
+                            <%= orders[i-1].createdAt%> 
+                        </td>
+                       <td>
+                        <a class="text-white btn btn-light" href="/admin/loadOrderDetails?id=<%=orders[i-1]._id%>">view Details</a><br> 
+                        <br>
+                        <form action="/admin/updateStatus" method="post">
+                        <select name="status" class="browser-default custom-select">
+                            <option><%=orders[i-1].status%></option>
+                            <option>cancelled</option>
+                            <option>Delivered</option>
+                            <option>Shipped</option>
+                            <option>packed</option>
+                          </select>
+                          <input type="hidden" name="orderId" value="<%=orders[i-1]._id%>">
+                          <% if (orders[i-1].status!="returned"&&orders[i-1].status!="cancelled"){%>
+                          <button style="background-color: darkcyan;" type="submit">update</button>
+                          <%}else{%>
+                            <%}%>
+                        </form>
+                       </td>
+                       
+                   
+
+    
+                    </tr>
+                    
+                    <% } } else{ %>
+                        <tr>
+                            <td colspan="5">Products Not Found</td>
+                        </tr>
+                        <% } %>
+                    
+                </tbody>
+              </table>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+
+<!-- SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Download as PDF
+  // console.log(jsPDF);
+  document.getElementById('pdf').addEventListener('click', function() {
+  var doc = new jsPDF();
+  doc.autoTable({
+    html: '#ordersTable',
+    columns: [
+      { header: 'Order ID', dataKey: 'Order ID' },
+      { header: 'Product', dataKey: 'Product' },
+      { header: 'Price', dataKey: 'Price' },
+      {header: 'Method',dataKey:'Method'},
+      {header: 'Method',dataKey:'Method'},
+      {header: 'Method',dataKey:'Method'},
+      {header: 'Method',dataKey:'Method'},
+
+
+    ]
+  });
+  doc.save('sales.pdf');
+});
+
+
+// Download as Excel
+// document.getElementById('downloadExcelBtn').addEventListener('click', function() {
+  // Get the table element
+//   var table = document.getElementById('ordersTable');
+
+  // Convert the table data to a worksheet object
+//   var worksheet = XLSX.utils.table_to_sheet(table);
+
+  // Create a new workbook and add the worksheet
+//   var workbook = XLSX.utils.book_new();
+//   XLSX.utils.book_append_sheet(workbook, worksheet, 'Sales');
+
+  // Save the Excel file
+//   XLSX.writeFile(workbook, 'sales.xlsx');
+// });
+
+
+ function cli(){
+ start=document.getElementById("startdate").value
+ end = document.getElementById("enddate").value
+ console.log(start,end);
+ data = {start:start,end:end}
+ axios.post('/admin/updateOrder', data)
+    .then(res => {
+      if(res.data){
+        console.log(res.data);  
+        console.log(res.data.orderDetail);
+                let orders = res.data.orderDetail
+                let ordersTableHTML = '';
+                
+                if (orders.length > 0) {
+                    orders.forEach((order, i) => {
+                        ordersTableHTML += `<tr> <th>${i+1}</th> <td>${order._id}</td> <td>${order.userId.name}</td> <td>${order.payment.amount}</td> <td>${order.payment.method}</td> <td>${order.status}</td> <td>${order.createdAt}</td> <td> <a class="text-white btn btn-light" href="/admin/loadOrderDetails?id=${order._id}">view Details</a><br> <br> <form action="/admin/updateStatus" method="post"> <select name="status" class="browser-default custom-select"> <option>${order.status}</option> <option>cancelled</option> <option>Delivered</option> <option>Shipped</option> <option>packed</option> </select> <input type="hidden" name="orderId" value="${order._id}"> ${order.status !== 'returned' ? '<button style="background-color: darkcyan;" type="submit">update</button>' : ''} </form> </td> </tr> `;
+                    });
+                } else {
+                    ordersTableHTML = '<tr><td colspan="5">Products Not Found</td></tr>';
+                }
+                document.getElementById("tbody").innerHTML=ordersTableHTML;
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
+}          
+                
+            
+     
+
+              </script>
+    
+            <%- include ('../layouts/adminFooter.ejs') %>
+    
+    
+        

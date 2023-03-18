@@ -1,0 +1,23 @@
+.reg_but{
+width: 150px;
+height: 50px;
+border-radius: 20px;
+font-weight: 400;
+}
+.back_but{
+    border-radius: 20px;
+    margin-top: 8px;
+    width: 150px;
+    height: 50px;
+    color: black;
+    font-weight: 400;
+
+}
+.back_but:hover{
+    margin-top: 8px;
+    width: 150px;
+    height: 50px;
+    color: rgb(91, 87, 87);
+    font-weight: 400;
+
+}
