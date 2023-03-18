@@ -652,7 +652,7 @@ const editUpdateCheckoutAddress =async(req,res)=>{
             zip:req.body.zip,
             mobile:req.body.mno
         }})
-        console.log(upadteAddres);
+        console.log(upadteAddres)
        res.redirect("/loadCheckout")
     } catch (error) {
         console.log(error.message);
