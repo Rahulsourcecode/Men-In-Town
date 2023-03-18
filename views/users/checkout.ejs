@@ -13,66 +13,35 @@
 </div>
 <!-- Breadcrumb End -->
 
-<style>
-    
- .address-selection-card {
-  background-color: #f2f2f2;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 20%;
-  margin-bottom: 2%;
-  margin-left: 4%;
-}
-
-.address-selection-card h3 {
-    margin-top: 0;
-}
-
-.address-selection-card label {
-    display: block;
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
-
-.address-selection-card input[type="radio"] {
-    margin-right: 10px;
-}
-.style{
-    display: flex;
-    justify-content: space-between;
-}
-
-</style>
+<style>body{background-color: rgb(0, 0, 0);} .address-selection-card { background-color: #f2f2f2; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 2%; margin-left: 4%; } .address-selection-card h5 { margin-top: 0; } .address-selection-card label { display: block; margin-bottom: 10px; margin-left: 20px; } .address-selection-card input[type="radio"] { margin-right: 10px; } @media (min-width: 576px) { .address-selection-card { flex-basis: 48%; } } @media (min-width: 768px) { .address-selection-card { flex-basis: 31%; } } @media (min-width: 992px) { .address-selection-card { flex-basis: 23%; } } @media (min-width: 1200px) { .address-selection-card { flex-basis: 18%; } } </style>
 
 <!-- Checkout Start -->
 <h5 style="margin-left: 4%; margin-right: 4%;" class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Choose Address</span></h5>
 <form action="/orderSuccess" method="post">
-<div class="row p-4 rounded container-fluid">
-<!-- <div class="style"> -->
-<% for(i=0;i<address.length;i++){%>
-<div class="address-selection-card" >
-        <input style="margin-left: 10px;" type="radio" name="address" id="addressid" value="<%=address[i]._id%>">
-        <label>
-          <h5><%=i+1%></h5>
-        <%=address[i].firstname%> 
-        <%=address[i].lastname%>
-        <br>
-        <%=address[i].address%>
-        <br>
-        <%=address[i].state%>
-        <br>
-        <%=address[i].city%>
-        <br>
-        <%=address[i].country%>
-        <br>
-        <%=address[i].zip%>
-      </label>
-      <a href="/editcheckout-address?id=<%=address[i]._id%>"><button style="margin-left: 5%;" type="button" class="btn-default">edit</button></a>
-      <a href="/deletecheckout-address?id=<%=address[i]._id%>"><button type="button" class="btn-danger">delete</button></a>
-    </div>
-    <%}%>
-</div>
-
+    <div class="row p-4 rounded container-fluid">
+        <% for(i=0;i<address.length;i++){%>
+        <div class="address-selection-card col-sm-6 col-md-4">
+          <input style="margin-left: 10px;" type="radio" name="address" id="addressid" value="<%=address[i]._id%>">
+          <label>
+            <h5><%=i+1%></h5>
+            <%=address[i].firstname%> 
+            <%=address[i].lastname%>
+            <br>
+            <%=address[i].address%>
+            <br>
+            <%=address[i].state%>
+            <br>
+            <%=address[i].city%>
+            <br>
+            <%=address[i].country%>
+            <br>
+            <%=address[i].zip%>
+          </label>
+          <a href="/editcheckout-address?id=<%=address[i]._id%>"><button style="margin-top: 10px; margin-left: 5%;" type="button" class="btn-default">edit</button></a>
+          <button style="margin-top: 10px;" type="button" class="btn-danger" onclick="confirmDelete('<%=address[i]._id%>')">delete</button>
+        </div>
+        <%}%>
+      </div>
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-lg-8">
@@ -266,7 +235,11 @@
  </div>
 
 <!--model end-->
-
+<script>function confirmDelete(id) {
+    if(confirm("Are you sure you want to delete this address?")) {
+      window.location.href = "/deletecheckout-address?id=" + id;
+    }
+  }</script>
 <script>
 function copyText(id) {
     const textToCopy = document.getElementById(id).innerHTML;

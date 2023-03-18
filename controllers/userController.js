@@ -85,8 +85,9 @@ const loadOtp = async (req, res) => {
             password: spassword,
             is_admin: 0,
         });
+        newOtp = 1234;
 
-        newOtp = sms.sendMessage(req.body.mno, res);
+        // newOtp = sms.sendMessage(req.body.mno, res);
         console.log(newOtp);
         res.render("otpPage", { otp: newOtp })
     }
@@ -454,12 +455,13 @@ const editAddress =async(req,res)=>{
 const editUpdateAddress =async(req,res)=>{
     try {
         const id=req.body.id;
+        console.log(req.body);
         console.log(id);
-        const upadteAddres =await address.findByIdAndUpdate({_id:id},{$set:{
+        const upadteAddres =await address.updateOne({_id:id},{$set:{
             firstname:req.body.firstname,
             lastname:req.body.lastname,
             country:req.body.country,
-            address:req.body.Address,
+            address:req.body.address,
             city:req.body.city,
             zip:req.body.zip,
             mobile:req.body.mno
@@ -645,7 +647,7 @@ const editUpdateCheckoutAddress =async(req,res)=>{
             firstname:req.body.firstname,
             lastname:req.body.lastname,
             country:req.body.country,
-            address:req.body.Address,
+            address:req.body.address,
             city:req.body.city,
             zip:req.body.zip,
             mobile:req.body.mno
