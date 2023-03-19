@@ -33,6 +33,8 @@ user_route.get("/register", auth.isLogout, userController.loadRegister);
 
 user_route.post("/register", userController.loadOtp);
 
+user_route.get("/otpPage");
+
 user_route.post("/otpPage",userController.verifyOtp)
 
 
