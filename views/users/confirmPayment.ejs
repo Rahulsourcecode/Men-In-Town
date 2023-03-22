@@ -4,100 +4,7 @@
     <title>Razorpay Payment Gateway Integration</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <style>
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        body {
-          
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-background-color: #f2f2f2;
-background-image: url(https://www.lyra.com/in/wp-content/uploads/sites/8/2019/05/2-4.png);
-background-repeat: no-repeat;
-display: flex;
-background-size: cover;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-margin: 0;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 12px 18px rgba(0, 0, 0, 0.9);
-            animation: fadeIn 0.8s ease-out;
-            width: 300px;
-            max-width: 800px;
-            margin: 0 auto;
-
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        input[type="hidden"] {
-            display: none;
-        }
-
-        .btn {
-            background-color: #dcd628;
-            color: white;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            text-transform: uppercase;
-            margin-top: 25px;
-        }
-
-        .btn:hover {
-            background-color: #9f9509;
-        }
-
-        .processing {
-            background-color: #bcbcbc;
-            cursor: default;
-        }
-
-        .processing:hover {
-            background-color: #bcbcbc;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 25px;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="card">
@@ -163,7 +70,6 @@ margin: 0;
             rzp.open();
             e.preventDefault();
         }
-    </script>
     </script>
 </body>
 </html>
