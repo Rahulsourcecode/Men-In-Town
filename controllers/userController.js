@@ -40,36 +40,7 @@ const loadRegister = async (req, res) => {
     }
 }
 
-// const insertUser = async (req, res) => {
-//     try {
-//         const vemail = req.body.email;
-//         const vmobile = req.body.mobile;
-//         const verify = await User.findOne({ $or: [{ mobile: vmobile }, { email: vemail }] });
-//         if (verify) {
-//             res.render('register', { user: req.session.user, message: "user already exists!" })
-//         } else {
-//             const spassword = await securePassword(req.body.password);
-//             const user = new User({
-//                 name: req.body.name,
-//                 email: req.body.email,
-//                 mobile: req.body.mno,
-//                 password: spassword,
-//                 is_admin: 0,
-//             });
-//             const userData = await user.save();
-//             if (userData) {
-//                 res.render('register', { user: req.session.user, message: "registered successfully" })
-//             }
-//             else {
-//                 res.render('register', { user: req.session.user, message: "registration failed!!" })
-//             }
-//         }
 
-//     }
-//     catch (error) {
-//         console.log(error.message);
-//     }
-// }
 let user;
 const loadOtp = async (req, res) => {
     const verify = await User.findOne({ $or: [{ mobile: req.body.mno }, { email: req.body.email }] });
@@ -89,17 +60,27 @@ const loadOtp = async (req, res) => {
 
         // newOtp = sms.sendMessage(req.body.mno, res);
         console.log(newOtp);
-        res.render("otpPage", { otp: newOtp })
+        res.render("otpPage", { otp: newOtp ,mobno:req.body.mno})
     }
 }
 
+const againOtp =async(req,res)=>{
+    try {
+        newOtp=1234;
+    // newOtp = sms.sendMessage(req.body.phonenumber, res);
+    console.log(newOtp);
+    res.send({newOtp});
+    } catch (error) {
+        error.message
+    }
+}
 
 
 const verifyOtp = async (req, res) => {
 
     try {
 
-        if (req.query.id == req.body.otp) {
+        if (req.body.sendotp == req.body.otp) {
             const userData = await user.save();
             if (userData) {
                 res.render('register', { user: req.session.user, message: "registered successfully" })
@@ -118,45 +99,7 @@ const verifyOtp = async (req, res) => {
     }
 }
 
-// const verifyLogin = async (req, res) => {
-//     try {
-//         const email = req.body.email;
-//         const password = req.body.password;
 
-//         const userData = await User.findOne({ email: email, is_admin: 0 });
-//         console.log("user:" + userData)
-//         if (userData) {
-//             const passwordMatch = await bcrypt.compare(password, userData.password)
-
-//             if (passwordMatch) {
-//                 if (userData.is_verified) {
-//                     req.session.user_id = userData._id;
-//                     req.session.user = userData.name;
-//                     req.session.user1 = true
-
-//                     res.redirect('/home')
-//                 } else {
-//                     res.render('login', { message: 'you are blocked by administrator', user: req.session.user })
-
-//                 }
-
-//             }
-
-//             else {
-//                 res.render('login', { message: 'email and password are incorrect', user: req.session.user })
-//             }
-//         }
-//         else {
-//             res.render('login', { message: 'email and password are incorrect', user: req.session.user })
-//         }
-
-
-
-//     }
-//     catch (error) {
-//         console.log(error.message);
-//     }
-// }
 
 
 
@@ -244,25 +187,7 @@ const loadDetails = async (req, res) => {
     }
 };
 
-// const loadShop = async (req, res) => {
-//     try {
-//         var search = "";
-//         if (req.query.search) {
-//             search = req.query.search;
-//         }
-//         productData = await products.find({ name: { $regex: search + ".*" }, isAvailable: 1 })
-//         if (req.query.sort) {
-//             productData = await products.find().sort({ price: req.query.sort })
-//         }
-//         if (req.query.category) {
-//             productData = await products.find({ category: req.query.category })
-//         }
-//         const user = await User.find();
-//         res.render("shop", { user: req.session.user, product: productData })
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }
+
 
 const loadShop = async (req, res) => {
     try {
@@ -337,14 +262,7 @@ const loadCheckout =async (req,res)=>{
     }
 }
 
-// const applyCoupon =async (req,res)=>{
-//     try {
-//         const couponData=await coupon.findOne({_id:req.body.id})
-//         res.send({couponData})
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }
+
 const applyCoupon =async (req,res)=>{
     try {
     const totalPrice = req.body.totalValue;
@@ -519,7 +437,7 @@ const placeOrder =async(req,res)=>{
             await User.updateOne({_id:req.session.user_id},{$unset:{cart:1}})
             res.render("orderSuccess",{user:req.session.user})
 
-        }else  if(req.body.payment=="wallet"){
+        }else if(req.body.payment=="wallet"){
             console.log("123");
             let walletAmount=parseInt(req.body.walamount);
             let totalAmount=parseInt(req.body.cost)
@@ -548,8 +466,8 @@ const placeOrder =async(req,res)=>{
                 res.render("orderSuccess",{user:req.session.user})
             } else{
                 var instance = new RazorPay({
-                    key_id:process.env.KEY_ID,
-                    key_secret:process.env.KEY_SECRET
+                    key_id:process.env.key_id,
+                    key_secret:process.env.key_secret
                 })
                 let razorpayOrder = await instance.orders.create({
                     amount:req.body.cost*100,
@@ -572,17 +490,17 @@ const placeOrder =async(req,res)=>{
         }
         else{
             var instance = new RazorPay({
-                key_id:process.env.KEY_ID,
-                key_secret:process.env.KEY_SECRET
+                key_id:process.env.key_id,
+                key_secret:process.env.key_secret
               })
               let razorpayOrder = await instance.orders.create({
                 amount:req.body.cost*100,
                 currency:'INR',
                 receipt:Norder._id.toString()
               })
-              console.log('order Order created', razorpayOrder);
+            //   console.log('order Order created', razorpayOrder);
               paymentDetails=razorpayOrder;
-
+            //   console.log(Norder+"asfasfasdfdsf");
 
               const productData = await products.find()
             for (let key of userData.cart.item) {
@@ -604,9 +522,7 @@ const placeOrder =async(req,res)=>{
                 orderId: Norder._id.toString(),
               
               });
-            } 
-        
-        
+            }  
     
     } catch (error) {
         console.log(error.message);
@@ -805,4 +721,5 @@ module.exports = {
     loadOrderSuccess,
     writeReview,
     submitReview,
+    againOtp,
 }
