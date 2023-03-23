@@ -1,11 +1,10 @@
 <%- include ('../layouts/header.ejs') %>
 
-<style>
-  span{
-    color: rgb(255, 0, 0);
-  }
-  
-</style>
+  <style>
+    span {
+      color: rgb(255, 0, 0);
+    }
+  </style>
 
   <section class="vh-80 form-box" style="background-color: #000000; ">
     <div class="container p-3 h-100">
@@ -37,22 +36,25 @@
                 <div class="d-flex justify-content-around align-items-center mb-4"></div>
 
 
-                <button style="margin-bottom: 30px; width: 200px;background-color: #edd414;border-radius: 20px ;padding:10px; " type="submit" class="btn"
-                  value="Login" onclick="emailValidate(),passwordValidate()">
+                <button
+                  style="margin-bottom: 30px; width: 200px;background-color: #edd414;border-radius: 20px ;padding:10px; "
+                  type="submit" class="btn" value="Login" onclick="emailValidate(),passwordValidate()">
                   Login
                 </button>
                 <hr>
                 <a href="/forgot/forgot-p">forgot password?</a>
                 <div style="display: flex; justify-content: space-around;">
                   <p class="mt-5"> New user<a href="/register" class="text-decoration-none text-primary"> Register
-                      here</a></p>   
+                      here</a></p>
                   <!-- <button class="btn btn-primary mt-5"><a href="../admin/login"
                       class="text-decoration-none text-white">Admin Login</a></button> -->
                 </div>
                 <div class="">
                   <% if(typeof message !=='undefined' ){ %>
                     <span class="fs-4">
-                      <span style="color: red;"><%=message %></span>
+                      <span style="color: red;">
+                        <%=message %>
+                      </span>
                     </span>
                     <% } %>
                 </div>

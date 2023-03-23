@@ -1,4 +1,3 @@
-// const { clearCache } = require("ejs");
 
 const isLogin = async (req, res, next) => {
     try {

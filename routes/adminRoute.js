@@ -16,11 +16,6 @@ admin_route.use(session({
     saveUninitialized:true,    
 }));
 
-// admin_route.use(function(req, res, next) {
-//     if (!req.user)
-//         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-//     next();
-//   });
 
   
 admin_route.set('views', './views/admin');

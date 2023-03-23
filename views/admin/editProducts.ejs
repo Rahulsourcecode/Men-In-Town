@@ -1,230 +1,243 @@
 <%- include ('../layouts/adminHeader.ejs') %>
 
 
-<div class="sidebar pe-4 pb-3">
+  <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-secondary navbar-dark">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary">Men In Town</h3>
-        </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
-            <div class="position-relative">
-                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-            </div>
-            <div class="ms-3">
-                <span>Admin</span>
-            </div>
+      <a href="index.html" class="navbar-brand mx-4 mb-3">
+        <h3 class="text-primary">Men In Town</h3>
+      </a>
+      <div class="d-flex align-items-center ms-4 mb-4">
+        <div class="position-relative">
+          <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+          <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+          </div>
         </div>
-        <div class="navbar-nav w-100">
-            <a href="/admin/home" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="/admin/user" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
-            <a href="/admin/category" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Categories</a>
-            <a href="/admin/product" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Products</a>
-            <a href="/admin/order" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Orders</a>
-            <a href="/admin/banner" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Banners</a>
-            <a href="/admin/loadCoupon" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a>
+        <div class="ms-3">
+          <span>Admin</span>
+        </div>
+      </div>
+      <div class="navbar-nav w-100">
+        <a href="/admin/home" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a href="/admin/user" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
+        <a href="/admin/category" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Categories</a>
+        <a href="/admin/product" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Products</a>
+        <a href="/admin/order" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Orders</a>
+        <a href="/admin/banner" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Banners</a>
+        <a href="/admin/loadCoupon" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a>
 
-            
-            <!-- <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Administration</a>
+
+        <!-- <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Administration</a>
             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Coupon</a> -->
 
-        </div>
+      </div>
     </nav>
-</div>
-<div class="content">
+  </div>
+  <div class="content">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-        <a href="#" class="sidebar-toggler flex-shrink-0">
-            <i class="fa fa-bars"></i>
-        </a>
-        <form class="d-none d-md-flex ms-4">
-            <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-        </form>
-        <div class="navbar-nav align-items-center ms-auto">
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <i class="fa fa-bell me-lg-2"></i>
-                    <span class="d-none d-lg-inline-flex">Notification</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                    <a href="#" class="dropdown-item">
-                        <h6 class="fw-normal mb-0">Profile updated</h6>
-                        <small>15 minutes ago</small>
-                    </a>
-                    <hr class="dropdown-divider">
-                    <a href="#" class="dropdown-item">
-                        <h6 class="fw-normal mb-0">New user added</h6>
-                        <small>15 minutes ago</small>
-                    </a>
-                    <hr class="dropdown-divider">
-                    <a href="#" class="dropdown-item">
-                        <h6 class="fw-normal mb-0">Password changed</h6>
-                        <small>15 minutes ago</small>
-                    </a>
-                    <hr class="dropdown-divider">
-                    <a href="#" class="dropdown-item text-center">See all notifications</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <span class="d-none d-lg-inline-flex">Admin</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                    <a href="#" class="dropdown-item">My Profile</a>
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <a href="/admin/logout" class="dropdown-item">Log Out</a>
-                </div>
-            </div>
+      <a href="#" class="sidebar-toggler flex-shrink-0">
+        <i class="fa fa-bars"></i>
+      </a>
+      <form class="d-none d-md-flex ms-4">
+        <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+      </form>
+      <div class="navbar-nav align-items-center ms-auto">
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="fa fa-bell me-lg-2"></i>
+            <span class="d-none d-lg-inline-flex">Notification</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+            <a href="#" class="dropdown-item">
+              <h6 class="fw-normal mb-0">Profile updated</h6>
+              <small>15 minutes ago</small>
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              <h6 class="fw-normal mb-0">New user added</h6>
+              <small>15 minutes ago</small>
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              <h6 class="fw-normal mb-0">Password changed</h6>
+              <small>15 minutes ago</small>
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item text-center">See all notifications</a>
+          </div>
         </div>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+            <span class="d-none d-lg-inline-flex">Admin</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+            <a href="#" class="dropdown-item">My Profile</a>
+            <a href="#" class="dropdown-item">Settings</a>
+            <a href="/admin/logout" class="dropdown-item">Log Out</a>
+          </div>
+        </div>
+      </div>
     </nav>
 
 
 
 
-<h1 class="text-center text-light my-5"> Edit Product</h1>
-<h5 style="color: red;" class="text-center"><%-message%></h5>
+    <h1 class="text-center text-light my-5"> Edit Product</h1>
+    <h5 style="color: red;" class="text-center"><%-message%></h5>
 
-    <form action="/admin/edit-product?id=<%-products._id%>" style="margin-left: 15%;width: 50%;" class="" method="post" enctype="multipart/form-data">
-        <fieldset>
-      
-        
+    <form action="/admin/edit-product?id=<%-products._id%>" style="margin-left: 15%;width: 50%;" class="" method="post"
+      enctype="multipart/form-data">
+      <fieldset>
+
+
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="product_name">Name</label>
           <br>
-          <input id="product_name" name="pName" placeholder="Name" class="form-control input-md highlight" required="" type="text" value="<%=products.name%>"required/>
-            
+          <input id="product_name" name="pName" placeholder="Name" class="form-control input-md highlight" required=""
+            type="text" value="<%=products.name%>" required />
+
           <!-- Text input-->
-            <label class="col-md-4 control-label" for="product_name">Stock</label>
-            <br>
-            <input id="product_name" name="pStock" placeholder="Stock" class="form-control input-md highlight" required="" type="number" value="<%=products.stock%>"required/>
-          
-            <label class="col-md-4 control-label" for="product_name">Category</label>
-            <br>
-            <select class="form-select border-white" id="exampleFormControlSelect1" aria-label="Default select example" aria-placeholder="" name="pCategory">
-                <option disabled selected>select any category</option>
-                <% if(category){ %>
-                  <% for(let i=1;i <= category.length; i++){ %>
-                    <option value="<%= category[i-1].name %>">
-                      <%= category[i-1].name %>
-                    </option>
-                    <% } %>
+          <label class="col-md-4 control-label" for="product_name">Stock</label>
+          <br>
+          <input id="product_name" name="pStock" placeholder="Stock" class="form-control input-md highlight" required=""
+            type="number" value="<%=products.stock%>" required />
+
+          <label class="col-md-4 control-label" for="product_name">Category</label>
+          <br>
+          <select class="form-select border-white" id="exampleFormControlSelect1" aria-label="Default select example"
+            aria-placeholder="" name="pCategory">
+            <option disabled selected>select any category</option>
+            <% if(category){ %>
+              <% for(let i=1;i <=category.length; i++){ %>
+                <option value="<%= category[i-1].name %>">
+                  <%= category[i-1].name %>
+                </option>
+                <% } %>
                   <% }else{ %>
                     <h1>No Categories to add</h1>
-                  <% } %>  
-            </select>
-              
-          
-            <!-- Text input-->
-                <label class="col-md-4 control-label" for="product_name">Description</label>
-                <br>
-                <input id="product_name" name="pDescription" placeholder="Enter Description" class="form-control input-md highlight" required="" type="text" value="<%=products.description%>"required/>
-                  
-          
-                <!-- Text input-->
-            <label class="col-md-4 control-label" for="product_name">Price</label>
-            <br>
-            <input id="product_name" name="pPrice" placeholder="Enter the Price" class="form-control input-md highlight" required="" type="number" value="<%=products.price%>"required/>
-              
-            <!-- Text input-->
-                <label class="col-md-4 control-label" for="product_name">Rating</label>
-                <br>
-                <input id="product_name" name="pRating" placeholder="Mark your rating" class="form-control input-md highlight" required="" type="number" value="<%=products.rating%>" max="5" required/>
-                  
-    
-                <!-- File Button --> 
-                <label for="filebutton">Choose image</label>
-                <br>
-                <div class="d-flex mb-2 mt-2">
-                    <% for(let key of products.image){ %>
-                        <div id='<%=key %>' style="padding-right: 4px; ">  
-                        <div class="d-flex align-items-center justify-content-center position-relative " style="border: 1px solid rgb(236, 236, 236);border-radius: 8px;height: 85px;width: 78px;">  
-                          <button style="color: aliceblue;" type="button" onclick="cut('<%=key%>')" class="close position-absolute z-3 top-0 end-0 bg-transparent shadow-none " aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>                            
-                          <img src="/uploads/<%=key %>" class="img-thumbnail rounded" width="60px" height="60px" style="border: 4px;" alt="error">
-                        </div></div>
-                        <%}%>    
-                    </div>
-            <input id="filebutton" name="pImage" class="input-file" type="file" id="image"  multiple accept="image/*"/>
-    
-        
-        <!-- Button -->
-        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <input type="hidden" value="<%=products._id%>" id="pId"/>
-         <button type="submit" value="Register" class="btn btn-success btn-lg">Save Edits</button>
-          <a href="/admin/product" class="btn btn-outline-light ml-2 btn-lg ms-3">Go Back</a>
-        </div>
-        </fieldset>
+                    <% } %>
+          </select>
+
+
+          <!-- Text input-->
+          <label class="col-md-4 control-label" for="product_name">Description</label>
+          <br>
+          <input id="product_name" name="pDescription" placeholder="Enter Description"
+            class="form-control input-md highlight" required="" type="text" value="<%=products.description%>"
+            required />
+
+
+          <!-- Text input-->
+          <label class="col-md-4 control-label" for="product_name">Price</label>
+          <br>
+          <input id="product_name" name="pPrice" placeholder="Enter the Price" class="form-control input-md highlight"
+            required="" type="number" value="<%=products.price%>" required />
+
+          <!-- Text input-->
+          <label class="col-md-4 control-label" for="product_name">Rating</label>
+          <br>
+          <input id="product_name" name="pRating" placeholder="Mark your rating" class="form-control input-md highlight"
+            required="" type="number" value="<%=products.rating%>" max="5" required />
+
+
+          <!-- File Button -->
+          <label for="filebutton">Choose image</label>
+          <br>
+          <div class="d-flex mb-2 mt-2">
+            <% for(let key of products.image){ %>
+              <div id='<%=key %>' style="padding-right: 4px; ">
+                <div class="d-flex align-items-center justify-content-center position-relative "
+                  style="border: 1px solid rgb(236, 236, 236);border-radius: 8px;height: 85px;width: 78px;">
+                  <button style="color: aliceblue;" type="button" onclick="cut('<%=key%>')"
+                    class="close position-absolute z-3 top-0 end-0 bg-transparent shadow-none " aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <img src="/uploads/<%=key %>" class="img-thumbnail rounded" width="60px" height="60px"
+                    style="border: 4px;" alt="error">
+                </div>
+              </div>
+              <%}%>
+          </div>
+          <input id="filebutton" name="pImage" class="input-file" type="file" id="image" multiple accept="image/*" />
+
+
+          <!-- Button -->
+          <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+            <input type="hidden" value="<%=products._id%>" id="pId" />
+            <button type="submit" value="Register" class="btn btn-success btn-lg">Save Edits</button>
+            <a href="/admin/product" class="btn btn-outline-light ml-2 btn-lg ms-3">Go Back</a>
+          </div>
+      </fieldset>
     </form>
 
-       
 
 
 
-<style>
-.highlight{
-border-color: aliceblue;
-margin-top: 2%;
-margin-bottom: 2%;
 
-    }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-
-  function cut(id) {
-    const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
-
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    pId = document.getElementById('pId').value 
-    document.getElementById(id).innerHTML=''  
-    const data = {img:id , pId:pId}
-    console.log(id,pId);
-    axios.post('/admin/updateImage', data)
-    .then(res => {
-      if(res.data){
-        console.log(res.data);
+    <style>
+      .highlight {
+        border-color: aliceblue;
+        margin-top: 2%;
+        margin-bottom: 2%;
 
       }
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  console.log('This was logged in the callback: ' + result);
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your file is not deleted :)',
-      'error'
-    )
-  }
-})
-}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
 
-</script>
-<%- include ('../layouts/adminFooter.ejs') %>
+      function cut(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            pId = document.getElementById('pId').value
+            document.getElementById(id).innerHTML = ''
+            const data = { img: id, pId: pId }
+            console.log(id, pId);
+            axios.post('/admin/updateImage', data)
+              .then(res => {
+                if (res.data) {
+                  console.log(res.data);
+
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              })
+            console.log('This was logged in the callback: ' + result);
+            swalWithBootstrapButtons.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'Your file is not deleted :)',
+              'error'
+            )
+          }
+        })
+      }
+
+    </script>
+    <%- include ('../layouts/adminFooter.ejs') %>

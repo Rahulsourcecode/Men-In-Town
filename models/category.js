@@ -4,15 +4,15 @@ const catSchema = mongoose.Schema({
 
     name: {
         type: String,
-        unique:true,
-        uppercase:true,
+        unique: true,
+        uppercase: true,
         required: true,
     },
 
-    is_available:{
-        type:Number,
-        default:1,
-        required:true
+    is_available: {
+        type: Number,
+        default: 1,
+        required: true
     }
 
 });

@@ -1,25 +1,25 @@
 const User = require('../models/userModel')
 const products = require("../models/productModel")
-const coupon =require("../models/couponModel");
+const coupon = require("../models/couponModel");
 
 
 
 const loadCart = async (req, res) => {
     try {
-        userSession=req.session.user_id;
-        if(userSession){
+        userSession = req.session.user_id;
+        if (userSession) {
 
-            const couponData =await coupon.find();
-            const userData =await User.findById({ _id:userSession})
+            const couponData = await coupon.find();
+            const userData = await User.findById({ _id: userSession })
             const completeUser = await userData.populate('cart.item.productId')
-            if(req.query.coupon){
-                 coup=req.query.coupon
-            }else{
-                 coup=0;
+            if (req.query.coupon) {
+                coup = req.query.coupon
+            } else {
+                coup = 0;
             }
-            res.render("cart", { user: req.session.user,cartProducts:completeUser.cart,coupon:couponData,reduction:coup});
+            res.render("cart", { user: req.session.user, cartProducts: completeUser.cart, coupon: couponData, reduction: coup });
 
-        }else{
+        } else {
             res.redirect("/login");
         }
     } catch (error) {
@@ -27,57 +27,57 @@ const loadCart = async (req, res) => {
     }
 }
 
-const addToCart = async(req,res)=>{
-    try{
+const addToCart = async (req, res) => {
+    try {
         const productId = req.query.id;
         console.log(productId);
         userSession = req.session.user_id;
-        if(userSession){
+        if (userSession) {
             const details = await products.findOne({ _id: productId })
             const product = await products.find({ category: details.category });
-            const userData =await User.findById({_id:userSession})
-            const productData =await products.findById({ _id:productId })
+            const userData = await User.findById({ _id: userSession })
+            const productData = await products.findById({ _id: productId })
             userData.addToCart(productData)
             res.redirect('/loadCart');
             // res.render('details',{ user: req.session.user,message:"product added to cart !",detail: details, related: product })
 
-        }else{
+        } else {
             res.redirect('/login')
         }
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 }
-    
-const updateCart = async(req,res)=>{
-    try{
+
+const updateCart = async (req, res) => {
+    try {
         console.log("thisss");
-        let { quantity,_id } = req.body
-        const userData =await User.findById({_id:req.session.user_id})
-        const productData =await products.findById({ _id:_id })
-        const price= productData.price;
-            let test= await userData.updateCart(_id,quantity)
-            console.log(test);
-            res.json({test,price})
+        let { quantity, _id } = req.body
+        const userData = await User.findById({ _id: req.session.user_id })
+        const productData = await products.findById({ _id: _id })
+        const price = productData.price;
+        let test = await userData.updateCart(_id, quantity)
+        console.log(test);
+        res.json({ test, price })
 
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 }
 
-const deleteCart = async(req,res,)=>{
-    
-    try{
+const deleteCart = async (req, res,) => {
+
+    try {
         const productId = req.query.id
         userSession = req.session
-        const userData = await User.findById({_id:userSession.user_id})
+        const userData = await User.findById({ _id: userSession.user_id })
         userData.removefromCart(productId)
         res.redirect('/loadCart')
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 }
-module.exports={
+module.exports = {
     loadCart,
     addToCart,
     deleteCart,

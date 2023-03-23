@@ -1,10 +1,10 @@
 const User = require("../models/userModel");
 const category = require("../models/category");
-const coupon =require("../models/couponModel");
+const coupon = require("../models/couponModel");
 const path = require('path');
-const orders=require("../models/orderModel");
-const address=require("../models/addressModel");
-const Product=require("../models/productModel");
+const orders = require("../models/orderModel");
+const address = require("../models/addressModel");
+const Product = require("../models/productModel");
 
 const bcrypt = require("bcrypt");
 const { findById } = require("../models/productModel");
@@ -58,13 +58,13 @@ const verifyLogin = async (req, res) => {
 const loadDashboard = async (req, res) => {
   try {
     const products = await Product.find()
-    let pds=[],qty=[]
-    products.map(x=>{
-     pds=[...pds,x.name]
-     qty=[...qty,x.stock]
+    let pds = [], qty = []
+    products.map(x => {
+      pds = [...pds, x.name]
+      qty = [...qty, x.stock]
     })
     const arr = [];
-    const order = await orders.find().populate('products.item.productId');    
+    const order = await orders.find().populate('products.item.productId');
     for (let orders of order) {
       for (let product of orders.products.item) {
         const index = arr.findIndex(obj => obj.product == product.productId.name);
@@ -81,8 +81,15 @@ const loadDashboard = async (req, res) => {
       key1.push(obj.product);
       key2.push(obj.qty);
     });
+    const sales = key2.reduce((value, number) => {
+      return value + number;
+    }, 0)
+    let totalRevenue =0
+    for(let orders of order){
+       totalRevenue += orders.products.totalPrice;
+     }
     const userData = await User.findById({ _id: req.session.admin_id });
-    res.render("home", { admin: userData,key1,key2,pds,qty});
+    res.render("home", { admin: userData, key1, key2, pds, qty, sales,totalRevenue});
   } catch (error) {
     console.log(error.message);
   }
@@ -122,22 +129,22 @@ const loadCategory = async (req, res) => {
 
 const loadOrder = async (req, res) => {
   try {
-    
-    const allorders =await orders.find({}).populate("userId").sort({$natural:-1});
+
+    const allorders = await orders.find({}).populate("userId").sort({ $natural: -1 });
     const userData = await User.findById({ _id: req.session.admin_id });
-    res.render("orders", { admin: userData ,orders:allorders,orderDetail:allorders});
+    res.render("orders", { admin: userData, orders: allorders, orderDetail: allorders });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-const sortOrder = async(req,res)=>{
-  let {start ,end}=req.body
-  console.log(start,end);
+const sortOrder = async (req, res) => {
+  let { start, end } = req.body
+  console.log(start, end);
   const allOrders = await orders.find({
     createdAt: { $gte: start, $lte: end }
   }).populate("userId");
-    res.send({orderDetail:allOrders});
+  res.send({ orderDetail: allOrders });
 }
 
 const addCategories = async (req, res) => {
@@ -286,12 +293,12 @@ const addUser = async (req, res) => {
   }
 };
 
-const viewOrderDetails= async(req,res)=>{
+const viewOrderDetails = async (req, res) => {
   try {
-    const id=req.query.id;
-    const order= await orders.findById({_id:id});
-    const details =await order.populate('products.item.productId')
-    res.render("viewOrderDetails",{orders:details});
+    const id = req.query.id;
+    const order = await orders.findById({ _id: id });
+    const details = await order.populate('products.item.productId')
+    res.render("viewOrderDetails", { orders: details });
   } catch (error) {
     console.log(error.message);
   }
@@ -299,33 +306,32 @@ const viewOrderDetails= async(req,res)=>{
 
 
 
-const updateStatus =async(req,res)=>{
+const updateStatus = async (req, res) => {
   try {
-    const status=req.body.status;
-    const orderId=req.body.orderId;
-    const orderDetails =await orders.findByIdAndUpdate({_id:orderId},{$set:{status:status}})
-    if ((status=="cancelled") && orderDetails.payment.method!=="COD") 
-      {
-      userDetails=await User.findOne({_id:orderDetails.userId});
-      const walletData=userDetails.wallet;
-      userData =await User.updateOne({_id:orderDetails.userId},{$set:{wallet:walletData+orderDetails.payment.amount}})
+    const status = req.body.status;
+    const orderId = req.body.orderId;
+    const orderDetails = await orders.findByIdAndUpdate({ _id: orderId }, { $set: { status: status } })
+    if ((status == "cancelled") && orderDetails.payment.method !== "COD") {
+      userDetails = await User.findOne({ _id: orderDetails.userId });
+      const walletData = userDetails.wallet;
+      userData = await User.updateOne({ _id: orderDetails.userId }, { $set: { wallet: walletData + orderDetails.payment.amount } })
     }
-    if(status=="cancelled"){
+    if (status == "cancelled") {
       const productData = await Product.find()
-      const orderData=await orders.findById({_id:orderId});
-          for (let key of orderData.products.item) {
-              for (let prod of productData) {
-                  console.log(key.productId);
-                  if (new String(prod._id).trim() == new String(key.productId).trim()) {
-                      prod.stock = prod.stock + key.qty
-                      await prod.save()
-                  }
-              }
-           }
+      const orderData = await orders.findById({ _id: orderId });
+      for (let key of orderData.products.item) {
+        for (let prod of productData) {
+          console.log(key.productId);
+          if (new String(prod._id).trim() == new String(key.productId).trim()) {
+            prod.stock = prod.stock + key.qty
+            await prod.save()
+          }
+        }
+      }
     }
     res.redirect("/admin/order")
   } catch (error) {
-    
+
   }
 }
 
@@ -349,7 +355,7 @@ module.exports = {
   viewOrderDetails,
   updateStatus,
   sortOrder
- 
+
 };
 
 

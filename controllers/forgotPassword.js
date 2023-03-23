@@ -16,7 +16,7 @@ const loadForgotPassword = async (req, res) => {
 
 const loadVeriftyForgotPassword = async (req, res) => {
     const user = await User.find();
-     mobile = req.body.mobnumber;
+    mobile = req.body.mobnumber;
     const userDetails = await User.findOne({ mobile: mobile })
     if (userDetails) {
         try {
@@ -31,11 +31,11 @@ const loadVeriftyForgotPassword = async (req, res) => {
     }
 }
 
-const resendOtp=async(req,res)=>{
+const resendOtp = async (req, res) => {
     try {
-       console.log(mobile);
-       newOtp = sms.sendMessage(mobile, res);
-        res.render("forgetPasswordVOtp",{mobile: mobile,newOtp: newOtp});
+        console.log(mobile);
+        newOtp = sms.sendMessage(mobile, res);
+        res.render("forgetPasswordVOtp", { mobile: mobile, newOtp: newOtp });
     } catch (error) {
         console.log(error.message);
     }

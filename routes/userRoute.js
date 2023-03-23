@@ -33,7 +33,7 @@ user_route.get("/register", auth.isLogout, userController.loadRegister);
 
 user_route.post("/register", userController.loadOtp);
 
-user_route.get("/otpPage");
+user_route.post("/againotp",userController.againOtp);
 
 user_route.post("/otpPage",userController.verifyOtp)
 
@@ -75,6 +75,10 @@ user_route.get("/delete-address",userController.deleteAddress);
 user_route.get("/edit-address",userController.editAddress);
 
 user_route.post("/edit-address",userController.editUpdateAddress);
+
+user_route.get("/editUser",userController.editUser);
+
+user_route.post("/editUser",userController.editUserUpdate);
 
 user_route.get("/editcheckout-address",userController.editCheckoutAddress);
 

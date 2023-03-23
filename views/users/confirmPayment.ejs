@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Razorpay Payment Gateway Integration</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -10,6 +11,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -17,7 +19,7 @@
         }
 
         body {
-          
+
             font-family: 'Montserrat', sans-serif;
             background-color: #f2f2f2;
             display: flex;
@@ -25,15 +27,15 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-background-color: #f2f2f2;
-background-image: url(https://www.lyra.com/in/wp-content/uploads/sites/8/2019/05/2-4.png);
-background-repeat: no-repeat;
-display: flex;
-background-size: cover;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-margin: 0;
+            background-color: #f2f2f2;
+            background-image: url(https://www.lyra.com/in/wp-content/uploads/sites/8/2019/05/2-4.png);
+            background-repeat: no-repeat;
+            display: flex;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .card {
@@ -99,6 +101,7 @@ margin: 0;
         }
     </style>
 </head>
+
 <body>
     <div class="card">
         <h1>Pay with Razorpay</h1>
@@ -119,11 +122,11 @@ margin: 0;
             "key": "<%= key_id %>",
             "amount": "<%= total %>00",
             "currency": "INR",
-            "name": "My Website",
+            "name": "Men In Town",
             "description": "Payment for your order",
             "image": "/logo.png",
             "order_id": "<%= order_id %>",
-            "handler": function (response){
+            "handler": function (response) {
                 // Handle successful payment
                 console.log(response);
                 var paymentId = response.razorpay_payment_id;
@@ -145,24 +148,25 @@ margin: 0;
             }
         };
         var rzp = new Razorpay(options);
-        rzp.on('payment.success', function(response) {
+        rzp.on('payment.success', function (response) {
             res.send('payment Success')
-    var payment_id = response.razorpay_payment_id;
-    $.ajax({
-        url: '/onlinePayment',
-        type: 'GET',
-        data: { payment_id: payment_id },
-        success: function(data) {
-            // display a success message to the user
-            alert('Payment successful!');
-        }
-    });
-});
+            var payment_id = response.razorpay_payment_id;
+            $.ajax({
+                url: '/onlinePayment',
+                type: 'GET',
+                data: { payment_id: payment_id },
+                success: function (data) {
+                    // display a success message to the user
+                    alert('Payment successful!');
+                }
+            });
+        });
 
-        document.getElementById('razorpay-button').onclick = function(e){
+        document.getElementById('razorpay-button').onclick = function (e) {
             rzp.open();
             e.preventDefault();
         }
     </script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 <%- include('../layouts/header.ejs') %>
-<link rel="stylesheet" href="css/register.css">
- </section>
+  <link rel="stylesheet" href="css/register.css">
+  </section>
   <section class="vh-40 form-container">
     <div class="container py-2 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,7 +11,9 @@
 
               <% if(typeof message !=='undefined' ) { %>
                 <p class="fs-4 text-success">
-                  <span style="color: rgb(230, 8, 8);"><%=message %></span>
+                  <span style="color: rgb(230, 8, 8);">
+                    <%=message %>
+                  </span>
                 </p>
                 <% } %>
 
@@ -62,7 +64,8 @@
                       <button class=" btn btn-block back_but" style="background-color: #f8db00f0;"><a href="/home"
                           class="text-dark text-decoration-none"> Back</a></button>
 
-                      <button type="submit" class="btn btn-block reg_but" style="background-color: #f8db00f0;" value="Register"
+                      <button type="submit" class="btn btn-block reg_but" style="background-color: #f8db00f0;"
+                        value="Register"
                         onclick="nameValidate() , emailValidate(), numberValidate(), passwordValidate(), passwordValidate2()">
                         Register
                       </button>
