@@ -1,5 +1,50 @@
 <%- include ('../layouts/header.ejs') %>
+<style>
+    #s1{
+        background-image: url("https://livebcdamenschstorage.blob.core.windows.net/damensch/cms-media/blog-images/Tips-on-how-to-rock-that-tank-top-this-summer.jpg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        height: 200px;
+    }
+    #s2{
+        background-image: url("https://i.pinimg.com/736x/cc/26/60/cc2660a648aa6bef3beca6c6a3714a97.jpg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        height: 200px;
+    }
+    #s3{
+        background-image: url("https://www.maketecheasier.com/assets/uploads/2021/03/best-apple-watch-face-apps-featured.jpeg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        height: 200px;
+        
+    }
+    .cat-item {
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transition: all 0.5s ease;
+    }
 
+    .cat-item:hover {
+        transform: rotateY(20deg) scale(1.1);
+    }
+
+    .cat-item:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateZ(-1px);
+        filter: blur(10px);
+    }
+</style>
     <!-- Carousel Start -->
     <% if(banner) {%>
         <div class="container-fluid">
@@ -140,13 +185,12 @@
                     <div class="row px-xl-5 pb-3">
                         <div class="col-lg-4 col-md-12 col-sm-12 pb-1">
                             <a class="text-decoration-none" href="/loadShop?category=0">
-                                <div class="cat-item d-flex align-items-center mb-4"
+                                <div id="s1" class="cat-item d-flex align-items-center mb-4"
                                     style="height: 200px; border-radius: 10px;">
                                     <div class="overflow-hidden ml-2" style="width: 150px; height: 150px;">
-                                        <img class="img-fluid" src="/images/Category1.jpg " alt="#">
                                     </div>
                                     <div class="flex-fill pl-3">
-                                        <h5>Top Wears</h5>
+                                        <h5 class="text-light">Top Wears</h5>
                                         <small class="text-body"></small>
                                     </div>
                                 </div>
@@ -154,13 +198,12 @@
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 pb-1">
                             <a class="text-decoration-none" href="/loadShop?category=1">
-                                <div class="cat-item img-zoom d-flex align-items-center mb-4 "
+                                <div id="s2" class="cat-item img-zoom d-flex align-items-center mb-4 "
                                     style="height: 200px; border-radius: 10px;">
                                     <div class="overflow-hidden ml-2" style="width: 150px; height: 150px;">
-                                        <img class="img-fluid" src="/images/Category2.jpg " alt="#">
                                     </div>
                                     <div class="flex-fill pl-3">
-                                        <h5>Bottom Wears</h5>
+                                        <h5 class="text-light">Bottom Wears</h5>
                                         <small class="text-body"></small>
                                     </div>
                                 </div>
@@ -168,13 +211,12 @@
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 pb-1">
                             <a class="text-decoration-none" href="/loadShop?category=2">
-                                <div class="cat-item img-zoom d-flex align-items-center mb-4"
+                                <div id="s3" class="cat-item img-zoom d-flex align-items-center mb-4"
                                     style="height: 200px; border-radius: 10px;">
                                     <div class="overflow-hidden ml-2" style="width: 150px; height: 150px;">
-                                        <img class="img-fluid" src="/images/Category3.jpg " alt="#">
                                     </div>
                                     <div class="flex-fill pl-3">
-                                        <h5>Accesories</h5>
+                                        <h5 class="text-light">Accesories</h5>
                                         <small class="text-body"></small>
                                     </div>
                                 </div>
