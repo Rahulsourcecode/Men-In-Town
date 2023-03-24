@@ -56,9 +56,9 @@ const loadOtp = async (req, res) => {
             password: spassword,
             is_admin: 0,
         });
-        // newOtp = 1234;
+        newOtp = 1234;
 
-        newOtp = sms.sendMessage(req.body.mno, res);
+        // newOtp = sms.sendMessage(req.body.mno, res);
         console.log(newOtp);
         res.render("otpPage", { otp: newOtp, mobno: req.body.mno })
     }
@@ -115,8 +115,8 @@ const verifyLogin = async (req, res) => {
 
             if (passwordMatch) {
                 if (userData.is_verified) {
-                    // newOtp = "1234";
-                    newOtp =  sms.sendMessage(userData.mobile,res)
+                    newOtp = "1234";
+                    // newOtp =  sms.sendMessage(userData.mobile,res)
                     console.log(newOtp);
                     res.render('twoFactor', { otp: newOtp, userData: userData });
                 } else {

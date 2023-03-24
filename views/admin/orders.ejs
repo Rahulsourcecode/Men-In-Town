@@ -132,7 +132,7 @@
                                 <%= orders[i-1].status%>
                             </td>
                             <td>
-                                <%= orders[i-1].createdAt%>
+                                <%= orders[i-1].createdAt.toISOString().slice(0,10) %>
                             </td>
                             <td>
                                 <a class="text-white btn btn-light"
@@ -170,8 +170,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
-
-
 
         <!-- SheetJS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
@@ -238,7 +236,7 @@
 
                             if (orders.length > 0) {
                                 orders.forEach((order, i) => {
-                                    ordersTableHTML += `<tr> <th>${i + 1}</th> <td>${order._id}</td> <td>${order.userId.name}</td> <td>${order.payment.amount}</td> <td>${order.payment.method}</td> <td>${order.status}</td> <td>${order.createdAt}</td> <td> <a class="text-white btn btn-light" href="/admin/loadOrderDetails?id=${order._id}">view Details</a><br> <br> <form action="/admin/updateStatus" method="post"> <select name="status" class="browser-default custom-select"> <option>${order.status}</option> <option>cancelled</option> <option>Delivered</option> <option>Shipped</option> <option>packed</option> </select> <input type="hidden" name="orderId" value="${order._id}"> ${order.status !== 'returned' ? '<button style="background-color: darkcyan;" type="submit">update</button>' : ''} </form> </td> </tr> `;
+                                    ordersTableHTML += `<tr> <th>${i + 1}</th> <td>${order._id}</td> <td>${order.userId.name}</td> <td>${order.payment.amount}</td> <td>${order.payment.method}</td> <td>${order.status}</td> <td>${new Date(order.createdAt).toLocaleDateString()}</td> <td> <a class="text-white btn btn-light" href="/admin/loadOrderDetails?id=${order._id}">view Details</a><br> <br> <form action="/admin/updateStatus" method="post"> <select name="status" class="browser-default custom-select"> <option>${order.status}</option> <option>cancelled</option> <option>Delivered</option> <option>Shipped</option> <option>packed</option> </select> <input type="hidden" name="orderId" value="${order._id}"> ${order.status !== 'returned' ? '<button style="background-color: darkcyan;" type="submit">update</button>' : ''} </form> </td> </tr> `;
                                 });
                             } else {
                                 ordersTableHTML = '<tr><td colspan="5">Products Not Found</td></tr>';
