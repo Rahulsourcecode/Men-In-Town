@@ -68,7 +68,7 @@
     <!-- Checkout Start -->
     <h5 style="margin-left: 4%; margin-right: 4%;" class="section-title position-relative text-uppercase mb-3"><span
             class="bg-secondary pr-3">Choose Address</span></h5>
-    <form action="/orderSuccess" method="post">
+    <form action="/orderSuccess" method="post" onsubmit="return status()">
         <div class="row p-4 rounded container-fluid">
             <% for(i=0;i<address.length;i++){%>
                 <div class="address-selection-card col-sm-6 col-md-4">
@@ -109,7 +109,7 @@
 
                             <div class="col-md-12">
                                 <div class="custom-control custom-checkbox">
-                                    <input style="margin-left: 10px;" type="radio" name="address" id="addressid"
+                                    <input style="margin-left: 10px;" type="radio" name="address" id="check"
                                         value=0>
                                     <label class="">Ship to different address</label>
                                 </div>
@@ -319,6 +319,16 @@
     </div>
 
     <!--model end-->
+    <script>
+        function status() {
+            if(document.getElementById("check").checked){
+                    return true;
+            }else{
+                alert("Please Choose An address To Continue!!")
+                return false;
+            }
+        }
+    </script>
     <script>function confirmDelete(id) {
             if (confirm("Are you sure you want to delete this address?")) {
                 window.location.href = "/deletecheckout-address?id=" + id;
